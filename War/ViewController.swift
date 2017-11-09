@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class ViewController: UIViewController {
 
@@ -27,6 +28,26 @@ class ViewController: UIViewController {
     }
 
     @IBAction func dealTapped(_ sender: Any) {
+        
+        let playerNum = arc4random_uniform(13) + 2
+        let computerNum = arc4random_uniform(13) + 2
+        playerCard.image = UIImage(named: "card\(playerNum)")
+        computerCard.image = UIImage(named: "card\(computerNum)")
+        
+        handleLogic(playerNum,computerNum)
+    }
+    
+    func handleLogic(_ player : UInt32, _ computer : UInt32){
+        if player > computer {
+            let currentScore = Int(playerScore.text!)! + 1
+            playerScore.text = String(currentScore)
+        }
+        if computer > player {
+            let currentScore = Int(computerScore.text!)! + 1
+            computerScore.text = String(currentScore)
+        }
+        //else, cards tied
+        //if user gets to SCORE, alertController USER wins?
     }
     
 }
